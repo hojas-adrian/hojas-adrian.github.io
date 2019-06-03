@@ -1,4 +1,4 @@
-window.addEventListener('load', function () {
+window.addEventListener('DOMContentLoaded', function () {
     var boton = document.querySelector('#button'),
         body = document.body;
     boton.addEventListener('click', function () {
