@@ -25,10 +25,76 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
+   
+   <style>
+        #overlay {
+            background: lightgray;
+            box-sizing: border-box;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            padding: 0 calc(100vw - 900px);
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            z-index: 999;
+        }
+        #progress{
+            background: black;
+            height: 1px; 
+            margin-bottom: 30px;           
+            transition: 1s;
+            width:0;
+        }
+        .load {
+            opacity: 0;
+            pointer-events: none;
+            transition: 1s;
+        }
+    </style>
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="home.css">
+
     <script src="main.js"></script>
+    <script>
+        ;(function(){
+            function id(v){ return document.getElementById(v); }
+            function loadbar() {
+            var ovrl = id("overlay"),
+                prog = id("progress"),
+                stat = id("progstat"),
+                img = document.images,
+                c = 0,
+                tot = img.length;
+            if(tot == 0) return doneLoading();
+
+            function imgLoaded(){
+                c += 1;
+                var perc = ((100/tot*c) << 0) +"%";
+                prog.style.width = perc;
+                stat.innerHTML = "Loading "+ perc;
+                if(c===tot) return doneLoading();
+            }
+            function doneLoading(){
+                ovrl.classList.add('load')
+                /*ovrl.style.opacity = 0;
+                setTimeout(function(){ 
+                ovrl.style.display = "none";
+                }, 1200)*/;
+            }
+            for(var i=0; i<tot; i++) {
+                var tImg     = new Image();
+                tImg.onload  = imgLoaded;
+                tImg.onerror = imgLoaded;
+                tImg.src     = img[i].src;
+            }    
+            }
+            document.addEventListener('DOMContentLoaded', loadbar, false);
+        }());
+    </script>
 </head>
 <body> 
     <header>
@@ -40,62 +106,36 @@
             </ul>
         </nav>
     </header>
+    <div id="overlay">
+        <div id="progress"></div>
+        <div id="progstat"></div>
+    </div>
     <section id="works">
         <ul>
             <li><a href="projects/tesove.html">
                 <picture>
                     <img
-                        src="opera-400.jpg" alt="The Oslo Opera House"
-                        sizes="(min-width: 508px) 30vw, 100vw"
-                        srcset="1-200.jpg 200w,
-                                1-400.jpg 400w,
-                                1-500.jpg 500w,
-                                1-800.jpg 800w,
-                                1-1200.jpg 1200w">
+                        src="1-800.jpg" alt="The Oslo Opera House">
                 </picture>Tesove</a></li>
             <li><a href="projects/typefaces.html">
                 <picture>
                     <img
-                        src="opera-400.jpg" alt="The Oslo Opera House"
-                        sizes="(min-width: 508px) 30vw, 100vw"
-                        srcset="2-200.jpg 200w,
-                                2-400.jpg 400w,
-                                2-500.jpg 500w,
-                                2-800.jpg 800w,
-                                2-1200.jpg 1200w">
+                        src="2-800.jpg" alt="The Oslo Opera House">
                 </picture>Typefaces®</a></li>
             <li><a href="projects/latinta.html">
                 <picture>
                     <img
-                        src="opera-400.jpg" alt="The Oslo Opera House"
-                        sizes="(min-width: 508px) 30vw, 100vw"
-                        srcset="3-200.jpg 200w,
-                                3-400.jpg 400w,
-                                3-500.jpg 500w,
-                                3-800.jpg 800w,
-                                3-1200.jpg 1200w">
+                        src="3-800.jpg" alt="The Oslo Opera House">
                 </picture>LaTinta (Cuban Edition)</a></li>
             <li><a href="projects/latinta_mag.html">
                 <picture>
                     <img
-                        src="opera-400.jpg" alt="The Oslo Opera House"
-                        sizes="(min-width: 508px) 30vw, 100vw"
-                        srcset="4-200.jpg 200w,
-                                4-400.jpg 400w,
-                                4-500.jpg 500w,
-                                4-800.jpg 800w,
-                                4-1200.jpg 1200w">
+                        src="4-800.jpg" alt="The Oslo Opera House">
                 </picture>LaTinta Magazine (soon)</a></li>
             <li>
                 <picture>
                     <img
-                        src="opera-400.jpg" alt="The Oslo Opera House"
-                        sizes="(min-width: 508px) 30vw, 100vw"
-                        srcset="5-200.jpg 200w,
-                                5-400.jpg 400w,
-                                5-500.jpg 500w,
-                                5-800.jpg 800w,
-                                5-1200.jpg 1200w">
+                        src="5-800.jpg" alt="The Oslo Opera House">
                 </picture>Cuba 513 (soon)</li>
         </ul>
     </section>
