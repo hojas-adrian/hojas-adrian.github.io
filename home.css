@@ -1,3 +1,6 @@
+nav li {
+    text-decoration: line-through;
+}
 #works ul {
     align-items: flex-start;
     box-sizing: border-box;
@@ -11,41 +14,34 @@ li {
     margin: 5px;
 }
 picture {
-    background: lightgray;
     height: 0;
     left: 50%;
     overflow: hidden;
     pointer-events: none;
     position: absolute;
-    top: 0;
-    width: 50%;
+    top: calc(50% - 15vw);
+    transform: translate(-50%);
+    width: 30%;
 }
 picture img, picture source {
-    height: 100vh;
-    width: 50vw;
-    object-fit: cover;
-    object-position: 0 0;
+    width: 30vw;
 }
 li:hover picture {
-    height: 100vh;
+    height: 30vw;
     transition: height .4s ease-in-out;
 }
-/* #about {
-    display: none;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    width: 100%;
-} */
 @media (max-aspect-ratio: 1/1) {
     picture {
+        display: flex;
         left: 0;
+        top: 0;
+        transform: none;
         width: 100vw;
     }
     picture img, picture source {
         height: calc(100vh - 200px);
-        object-position: 50% 50%;
-        width: 100vw;
+        object-fit: cover;
+        width:  100%;
     }
     li:hover picture {
         height: calc(100vh - 200px);
