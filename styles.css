@@ -75,7 +75,7 @@ li {
     top: 50%;
     transform: translate(-50%,-50%);
 }
-h1 {
+h1,  #about h2.about{
     font-size: 2em;
     font-weight: normal;
     margin-top: 0;
